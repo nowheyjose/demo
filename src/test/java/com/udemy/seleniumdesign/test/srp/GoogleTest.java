@@ -1,13 +1,13 @@
 package com.udemy.seleniumdesign.test.srp;
 
-import org.junit.Test;
-import org.testng.annotations.BeforeTest;
-
-import com.udemy.seleniumdesign.srp.GoogleMainPage;
-import com.udemy.seleniumdesign.srp.GoogleResultPage;
+import com.udemy.seleniumdesign.srp.main.GoogleMainPage;
+import com.udemy.seleniumdesign.srp.result.GoogleResultPage;
 import com.udemy.seleniumdesign.test.BaseTest;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class GoogleTest extends BaseTest {
 
@@ -20,11 +20,9 @@ public class GoogleTest extends BaseTest {
         this.googleResultPage = new GoogleResultPage(driver);
     }
 
-    @Test
-    public void googleWorkflow() {
-
-        String keyword = "selenium webdriver";
-        int index = 3;
+    // pass the parametrized data into the arguments for the test method
+    @Test(dataProvider = "getData")
+    public void googleWorkflow(String keyword, int index) throws Exception {
 
         googleMainPage.goTo();
         Assert.assertTrue(googleMainPage.getSearchWidget().isDisplayed());
@@ -33,10 +31,10 @@ public class GoogleTest extends BaseTest {
         Assert.assertTrue(googleMainPage.getSearchSuggestion().isDisplayed());
 
         googleMainPage.getSearchSuggestion().clickSuggestionByIndex(index);
-        Assert.assertTrue(googleResultPage.getNavigationBar().isDisplayed());
+        Assert.assertTrue(googleResultPage.getNavigationBar().isDisplayed(), "Failed suggestion check");
 
         googleResultPage.getSearchWidget().enter(keyword);
-        Assert.assertTrue(googleResultPage.getSearchSuggestion().isDisplayed());
+        Assert.assertTrue(googleResultPage.getSearchSuggestion().isDisplayed(), "Failed suggestion check");
 
         googleResultPage.getSearchSuggestion().clickSuggestionByIndex(index);
 
@@ -44,5 +42,14 @@ public class GoogleTest extends BaseTest {
 
         System.out.println(googleResultPage.getResultStats().getStat());
 
+    }
+
+    // parameterized test
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][] {
+                { "selenium webdriver", 3 },
+                { "docker", 2 }
+        };
     }
 }

@@ -1,4 +1,4 @@
-package com.udemy.seleniumdesign.srp;
+package com.udemy.seleniumdesign.srp.common;
 
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractComponent {
 
+    // abstract class which contains common elements for all components
     protected WebDriverWait wait;
 
     public AbstractComponent(final WebDriver driver) {
