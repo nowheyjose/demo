@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.Map;
 
 // Factory class for Google
-// This class is responsible for creating the Google page objects based on the requirements (in this case, the browser type)
+// This class is responsible for creating the Google page objects based on the requirements (in this case, the browser launcher type or language being used)
 
 public class GoogleFactory {
 
