@@ -19,10 +19,9 @@ public class SearchWidget extends AbstractComponent {
 
     public void enter(String keyword) {
         this.searchBox.clear();
-
         // simulate entry into google search and delay to display different results
         for (char ch : keyword.toCharArray()) {
-            Uninterruptibles.sleepUninterruptibly(20, TimeUnit.MILLISECONDS);
+            Uninterruptibles.sleepUninterruptibly(10, TimeUnit.MILLISECONDS);
             this.searchBox.sendKeys(String.valueOf(ch));
         }
     }
