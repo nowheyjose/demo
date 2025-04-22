@@ -37,6 +37,7 @@ public class Decorators {
     private static final Consumer<DashboardPage> guestSelection = (dp) -> dp.selectRole("guest");
 
     // user role pages
+    // and then is used to chain the actions in lambda expressions
     public static final Consumer<DashboardPage> guestPage = guestSelection.andThen(guestComponentPresent)
             .andThen(suComponentPresent).andThen(adminComponentNotPresent);
     public static final Consumer<DashboardPage> suPage = suSelection.andThen(guestComponentPresent)
