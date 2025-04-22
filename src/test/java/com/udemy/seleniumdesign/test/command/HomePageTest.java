@@ -37,3 +37,11 @@ public class HomePageTest extends BaseTest {
 
     // you can use testNG's @DataProvider to run the same test with different data
 }
+
+// command design pattern is useful when you have a lot of actions to perform on
+// a page
+// it allows you to encapsulate the actions in a class and use them in your
+// tests
+// it also allows you to use the same actions in different tests without
+// duplicating code
+// or if you have a lot of elements on a page and you want to validate them
